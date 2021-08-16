@@ -17,7 +17,7 @@ Image registration aims to establish spatial correspondence across pairs, or gro
 
 ## Network:<a id="Network"/>
 The kernal idea is to use dep learning network to mimic the process of deforming the template mesh under the guidence of contours.
-![image](https://github.com/cistib/DDIR/tree/main/fig/DDIR.png)
+![image](https://github.com/cistib/DDIR/blob/main/fig/DDIR.png)
 
 ## Repo Contents:<a id="Repo Contents"/>
 This code is partially referred to [voxelmorph](https://github.com/voxelmorph/voxelmorph), where the GCN block and the mesh loss are mainly from it.
