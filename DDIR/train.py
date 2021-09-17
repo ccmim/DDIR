@@ -81,7 +81,7 @@ def train(data_dir,
 
     # prepare the model
     with tf.device(gpu):
-        model = networks.ukbb_ddir_sole_net(vol_size, nf_enc, nf_dec, bidir=bidir)
+        model = networks.DDIR(vol_size, nf_enc, nf_dec, bidir=bidir)
         
         # load initial weights
         if load_model_file is not None and load_model_file != "":
