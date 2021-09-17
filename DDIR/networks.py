@@ -21,7 +21,6 @@ import tensorflow as tf
 #from keras.layers import Input
 
 # import neuron layers, which will be useful for Transforming.
-from capsule_layers import ConvCapsuleLayer, Length, Mask
 sys.path.append('../ext/neuron')
 sys.path.append('../ext/pynd-lib')
 sys.path.append('../ext/pytools-lib')
