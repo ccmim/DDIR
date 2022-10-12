@@ -15,11 +15,11 @@ The source code of "A Deep Discontinuity-Preserving Image Registration Network",
 Image registration aims to establish spatial correspondence across pairs, or groups of images, and is a cornerstone of medical image computing and computer-assisted-interventions. Currently, most deep learning-based registration methods assume that the desired deformation fields are globally smooth and continuous, which is not always valid for real-world scenarios, especially in medical image registration (e.g. cardiac imaging and abdominal imaging). Such a global constraint can lead to artefacts and increased errors at discontinuous tissue interfaces. To tackle this issue, we propose a weakly-supervised Deep Discontinuity-preserving Image Registration network (DDIR), to obtain better registration performance and realistic deformation fields. We demonstrate that our method achieves significant improvements in registration accuracy and predicts more realistic deformations, in registration experiments on cardiac magnetic resonance (MR) images from UK Biobank Imaging Study (UKBB), than state-of-the-art approaches.
 
 ## Network:<a id="Network"/>
-There are two main components in the DDIR, the multi-channel encoder-decoder block and discontinuity composition block.
+There are two main components in the DDIR, the Multi-channel Encoder-decoder block and Discontinuity Composition block.
 ![image](https://github.com/cistib/DDIR/blob/main/fig/DDIR.png)
 
 ## Repo Contents:<a id="Repo Contents"/>
-This code is partially referred to [voxelmorph](https://github.com/voxelmorph/voxelmorph).
+This code partially refers to the [voxelmorph](https://github.com/voxelmorph/voxelmorph).
 
 ## Package dependencies:<a id="Package dependencies"/>
 This repository is based on Python3.6, Tensorflow and Keras.
@@ -43,7 +43,7 @@ Use the following command to test the DDIR. Dice score, Hausdorff Distance (HD) 
 ```sh
 python test.py 0 path/to/model file/  model_name
 ```
-where model_name is the name of a specific model to test.
+where 'model_name' is the name of a specific model to test.
 
 
 ## Citation:<a id="Citation"/>
