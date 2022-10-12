@@ -13,7 +13,7 @@ The source code of "A Deep Discontinuity-Preserving Image Registration Network",
 - <a href="#Citation">`Citation`</a>
 
 ## Abstract:<a id="Abstract"/>
-Image registration aims to establish spatial correspondence across pairs, or groups of images, and is a cornerstone of medical image computing and computer-assisted-interventions. Currently, most deep learning-based registration methods assume that the desired deformation fields are globally smooth and continuous, which is not always valid for real-world scenarios, especially in medical image registration (e.g. cardiac imaging and abdominal imaging). Such a global constraint can lead to artefacts and increased errors at discontinuous tissue interfaces. To tackle this issue, we propose a weakly-supervised Deep Discontinuity-preserving Image Registration network (DDIR), to obtain better registration performance and realistic deformation fields. We demonstrate that our method achieves significant improvements in registration accuracy and predicts more realistic deformations, in registration experiments on cardiac magnetic resonance (MR) images from UK Biobank Imaging Study (UKBB), than state-of-the-art approaches. 
+Image registration aims to establish spatial correspondence across pairs, or groups of images, and is a cornerstone of medical image computing and computer-assisted-interventions. Currently, most deep learning-based registration methods assume that the desired deformation fields are globally smooth and continuous, which is not always valid for real-world scenarios, especially in medical image registration (e.g. cardiac imaging and abdominal imaging). Such a global constraint can lead to artefacts and increased errors at discontinuous tissue interfaces. To tackle this issue, we propose a weakly-supervised Deep Discontinuity-preserving Image Registration network (DDIR), to obtain better registration performance and realistic deformation fields. We demonstrate that our method achieves significant improvements in registration accuracy and predicts more realistic deformations, in registration experiments on cardiac magnetic resonance (MR) images from UK Biobank Imaging Study (UKBB), than state-of-the-art approaches.
 
 ## Network:<a id="Network"/>
 There are two main components in the DDIR, multi-channel encoder-decoder and discontinuity composition block.
@@ -50,4 +50,14 @@ python demo.py 0 path/to/model file/  modelname
 ```
 
 ## Citation:<a id="Citation"/>
-to do.
+If you find this code useful in your research, please consider citing:
+```
+@inproceedings{chen2021deep,
+  title={A Deep Discontinuity-Preserving Image Registration Network},
+  author={Chen, Xiang and Xia, Yan and Ravikumar, Nishant and Frangi, Alejandro F},
+  booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention},
+  pages={46--55},
+  year={2021},
+  organization={Springer}
+}
+```
