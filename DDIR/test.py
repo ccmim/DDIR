@@ -53,13 +53,12 @@ def flow_jacdet(flow):
 
 def computeQualityMeasures(lP,lT):
     quality=dict()
-    #print('123453454',lP.shape)
     labelPred=sitk.GetImageFromArray(lP, isVector=False)
     labelPred.SetSpacing([3.15,1.5,1.5])
     labelTrue=sitk.GetImageFromArray(lT, isVector=False)
-    labelTrue.SetSpacing([3.15,1.5,1.5,3.15])
+    labelTrue.SetSpacing([3.15,1.5,1.5])
     hausdorffcomputer=sitk.HausdorffDistanceImageFilter()
-    hausdorffcomputer.Execute(labelTrue>0.8,labelPred>0.8)
+    hausdorffcomputer.Execute(labelTrue>0.1,labelPred>0.1)
     quality["avgHausdorff"]=hausdorffcomputer.GetAverageHausdorffDistance()
     quality["Hausdorff"]=hausdorffcomputer.GetHausdorffDistance()
  
@@ -157,8 +156,6 @@ def test(gpu_id, model_dir, iter_num,
     nag_jec_ratio = []
     for k in range(2*n_batches):
         # get data
-        if k!=708:
-            continue
         if k >= n_batches:
             seg_name = test_names[k-n_batches]
             flag = 1
@@ -315,12 +312,12 @@ def test(gpu_id, model_dir, iter_num,
         
     dice_ori1 = np.array(dice_ori1)
     dice1 = np.array(dice1)
-    elastix_dice1 = np.array(elastix_dice1)
+    #elastix_dice1 = np.array(elastix_dice1)
     indices_pre = np.array(indices_pre)
     indices_gt = np.array(indices_gt)
     print(dice_ori1.shape,dice1.shape)
-    print('vmdice before registration:',np.mean(dice_ori1[:,0]),np.std(dice_ori1[:,0]),'||',np.mean(dice_ori1[:,1]),np.std(dice_ori1[:,1]),'||',np.mean(dice_ori1[:,2]),np.std(dice_ori1[:,2]),'||',np.mean(dice_ori1),np.std(np.mean(dice_ori1,1)))
-    print('vmdice after registration:',np.mean(dice1[:,0]),np.std(dice1[:,0]),'||',np.mean(dice1[:,1]),np.std(dice1[:,1]),'||', np.mean(dice1[:,2]),np.std(dice1[:,2]),'||',np.mean(dice1),np.std(np.mean(dice1,1)))
+    print('dice before registration:',np.mean(dice_ori1[:,0]),np.std(dice_ori1[:,0]),'||',np.mean(dice_ori1[:,1]),np.std(dice_ori1[:,1]),'||',np.mean(dice_ori1[:,2]),np.std(dice_ori1[:,2]),'||',np.mean(dice_ori1),np.std(np.mean(dice_ori1,1)))
+    print('dice after registration:',np.mean(dice1[:,0]),np.std(dice1[:,0]),'||',np.mean(dice1[:,1]),np.std(dice1[:,1]),'||', np.mean(dice1[:,2]),np.std(dice1[:,2]),'||',np.mean(dice1),np.std(np.mean(dice1,1)))
     print('original dice mean:',np.mean(dice_ori),np.std(dice_ori))
     print('original hd mean:',np.mean(hd_ori),np.std(hd_ori))
     print('dice mean:',np.mean(dice0),np.std(dice0))
@@ -340,11 +337,12 @@ def test(gpu_id, model_dir, iter_num,
         hf.create_dataset("carnet_rv_dice",  data=dice1[:,2])
         hf.create_dataset("indices_pre",  data=indices_pre)
         hf.create_dataset("indices_gt",  data=indices_gt)
-    
+    '''
     print('elastix dice mean:',np.mean(elastix_dice),np.std(elastix_dice))
     print('elastix hd mean:',np.mean(elastix_hd),np.std(elastix_hd))
     print('elastix dice mean:',np.mean(elastix_dice1[:,0]),np.std(elastix_dice1[:,0]),'||',np.mean(elastix_dice1[:,1]),np.std(elastix_dice1[:,1]),'||',np.mean(elastix_dice1[:,2]),np.std(elastix_dice1[:,2]),'||', np.mean(elastix_dice1),np.std(np.mean(elastix_dice1,1)))
     print('tr RMSE:',np.mean(RMSE_tr),np.std(RMSE_tr))
+    '''
 
 if __name__ == "__main__":
     """

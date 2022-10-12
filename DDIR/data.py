@@ -53,7 +53,7 @@ def train_data(vol_names, batch_size=1, return_segs=False, seg_dir=None, np_var=
                 Y_data.append(Y)
                 X_SEGdata.append(X_seg)
                 Y_SEGdata.append(Y_seg)
-                #print(np.random.choice([0,1]))
+
             else:
                 X_data.append(Y)
                 Y_data.append(X)
@@ -132,13 +132,13 @@ def load_volfile_ukbb(datafile, np_var='vol_data'):
 
         X1 = (X1-X1.min())/(X1.max()-X1.min())
         X2 = (X2-X2.min())/(X2.max()-X2.min())
-        #print(data.shape)
+
         if (X1.shape[2]<32):
             X1 = np.pad(X1, ((0, 0), (0, 0), (0, 32-X1.shape[2])), 'constant')
         if (X2.shape[2]<32):
             X2 = np.pad(X2, ((0, 0), (0, 0), (0, 32-X2.shape[2])), 'constant')
-        #print('2345',data.shape,datafile,X1.shape,X2.shape)
-    else: # npz
+
+    else: 
         if np_var is None:
             np_var = 'vol_data'
         X = np.load(datafile)[np_var]
@@ -178,13 +178,13 @@ def load_volfile_ukbb1(datafile, np_var='vol_data'):
 
         X1 = (X1-X1.min())/(X1.max()-X1.min())
         X2 = (X2-X2.min())/(X2.max()-X2.min())
-        #print(data.shape)
+
         if (X1.shape[2]<32):
             X1 = np.pad(X1, ((0, 0), (0, 0), (0, 32-X1.shape[2])), 'constant')
         if (X2.shape[2]<32):
             X2 = np.pad(X2, ((0, 0), (0, 0), (0, 32-X2.shape[2])), 'constant')
-        #print('2345',data.shape,datafile,X1.shape,X2.shape)
-    else: # npz
+
+    else: 
         if np_var is None:
             np_var = 'vol_data'
         X = np.load(datafile)[np_var]
@@ -219,7 +219,7 @@ def load_segfile_ukbb(datafile, np_var='vol_data'):
             X1 = np.pad(X1, ((0, 0), (0, 0), (0, 32-X1.shape[2])), 'constant')
         if (X2.shape[2]<32):
             X2 = np.pad(X2, ((0, 0), (0, 0), (0, 32-X2.shape[2])), 'constant')
-            #print(X.shape)
+
         
         #X = transform.resize(X,( 128, 128,32))
     else: # npz
