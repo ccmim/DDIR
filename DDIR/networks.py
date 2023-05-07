@@ -265,28 +265,28 @@ def DDIR(vol_size, enc_nf, dec_nf, int_steps=7, use_miccai_int=False, indexing='
     flow3 = nrn_layers.VecInt(method='ss', name='flow-int3', int_steps=int_steps)(flow3)
     flow3 = trf_resize(flow3, vel_resize, name='diffflow3')
 
-    flow0 = multiply([flow0,mask0])
-    flow1 = multiply([flow1,mask1])
-    flow2 = multiply([flow2,mask2])
-    flow3 = multiply([flow3,mask3])
+    flow0 = multiply([flow0,mask4])
+    flow1 = multiply([flow1,mask5])
+    flow2 = multiply([flow2,mask6])
+    flow3 = multiply([flow3,mask7])
     
 
     flow = Lambda(flow_sum, name='diffflow')([flow0, flow1, flow2, flow3])
 
 
-    if bidir:
-        neg_flow = trf_resize(neg_flow, vel_resize, name='neg_diffflow')
+    #if bidir:
+    #    neg_flow = trf_resize(neg_flow, vel_resize, name='neg_diffflow')
 
     # transform
     y = nrn_layers.SpatialTransformer(interp_method='linear', indexing=indexing)([src, flow])
     y_seg = nrn_layers.SpatialTransformer(interp_method='nearest', indexing=indexing)([src_segment, flow])
-    if bidir:
-        y_tgt = nrn_layers.SpatialTransformer(interp_method='linear', indexing=indexing)([tgt, neg_flow])
+    #if bidir:
+    #    y_tgt = nrn_layers.SpatialTransformer(interp_method='linear', indexing=indexing)([tgt, neg_flow])
 
     # prepare outputs and losses
     outputs = [y, y_seg,flow_params0, flow_params1, flow_params2, flow_params3]
-    if bidir:
-        outputs = [y, y_tgt, flow_params]
+    #if bidir:
+    #    outputs = [y, y_tgt, flow_params]
 
     # build the model
     return Model(inputs=[src, tgt,src_segment,tgt_segment], outputs=outputs)
